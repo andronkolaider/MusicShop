@@ -12,6 +12,7 @@
             </Grid.ColumnDefinitions>
             <Grid.RowDefinitions>
                 <RowDefinition></RowDefinition>
+                <RowDefinition></RowDefinition>
             </Grid.RowDefinitions>
             <StackPanel>
                 <Image Margin="7" Height="200" Width="200" Source="{Binding Image}" HorizontalAlignment="Left"></Image>
@@ -23,7 +24,8 @@
                 </TextBlock>
                 <Button Tag="{Binding Id}"  Name="BuyButton" Click="BaiButtonClick" FontSize="20" FontFamily="Feast of Flesh BB" Grid.Row="2" Height="40" Width="100" HorizontalAlignment="Center" VerticalAlignment="Bottom" Margin="10">Buy</Button>
             </StackPanel>
-            <StackPanel Grid.Column="1">
+            <StackPanel Grid.Column="1" >
+                <Button HorizontalAlignment="Right" Grid.Row="1" Grid.Column="1" Margin="5" Width="120" >Edit</Button>
                 <TextBlock FontSize="50" FontFamily="the dark"  >
                     <Run Foreground="Orange" Text="{Binding Title}"></Run>
                 </TextBlock>

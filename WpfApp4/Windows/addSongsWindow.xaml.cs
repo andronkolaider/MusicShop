@@ -50,20 +50,20 @@ namespace WpfApp4
             bool OK = false;
             if (SongsListView.Items.Count > 0)
             {
-                foreach(Song item in SongsListView.Items)
+                foreach (Song item in SongsListView.Items)
                 {
-                   if( item.Length !=-1)
+                    if (item.Length != -1)
                     {
 
                         OK = true;
                     }
-                   else
+                    else
                     {
                         this.DialogResult = false;
                         break;
                     }
                 }
-                if(OK==true)
+                if (OK == true)
                 {
                     this.DialogResult = true;
                 }
@@ -83,7 +83,7 @@ namespace WpfApp4
                 this.ShowMessageAsync("", result.ToString());
                 return result;
             }
-                else
+            else
             {
                 this.ShowMessageAsync("Error", "Wrong time format");
                 return -1;

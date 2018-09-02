@@ -74,24 +74,24 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
-    <Compile Include="AlbumViewModel.cs" />
-    <Page Include="addSongsWindow.xaml">
+    <Compile Include="Models\AlbumViewModel.cs" />
+    <Page Include="Windows\addSongsWindow.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="DataTemplateMusic.xaml">
+    <Page Include="Resource Dictionaries\DataTemplateMusic.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="DataTemplateAddSong.xaml">
+    <Page Include="Resource Dictionaries\DataTemplateAddSong.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="MainWindow.xaml">
+    <Page Include="Windows\MainWindow.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
-    <Compile Include="addSongsWindow.xaml.cs">
+    <Compile Include="Windows\addSongsWindow.xaml.cs">
       <DependentUpon>addSongsWindow.xaml</DependentUpon>
     </Compile>
     <Compile Include="App.xaml.cs">
@@ -109,10 +109,10 @@
     <Compile Include="Models\Song.cs" />
     <Compile Include="Converters\SecondsToMinutesConverter.cs" />
     <Compile Include="Converters\DecimalToMoney.cs" />
-    <Compile Include="DataTemplateMusic.xaml.cs">
+    <Compile Include="Resource Dictionaries\DataTemplateMusic.xaml.cs">
       <DependentUpon>DataTemplateMusic.xaml</DependentUpon>
     </Compile>
-    <Compile Include="MainWindow.xaml.cs">
+    <Compile Include="Windows\MainWindow.xaml.cs">
       <DependentUpon>MainWindow.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
