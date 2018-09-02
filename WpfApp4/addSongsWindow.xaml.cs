@@ -23,12 +23,29 @@ namespace WpfApp4
     /// 
     public partial class addSongsWindow : MetroWindow
     {
-        public AlbumViewModel albumView = new AlbumViewModel();
-        Author fromMain;
-
+        public AlbumViewModel albumView;
+        Album editableAlbum;
         public addSongsWindow()
         {
             InitializeComponent();
+            this.DataContext = albumView;
+        }
+
+        public addSongsWindow(Album album)
+        {
+            InitializeComponent();
+            
+            using (MusicContext db = new MusicContext())
+            {
+                albumView = new AlbumViewModel();
+                editableAlbum = db.Albums.FirstOrDefault(x => x.Id == album.Id);
+                foreach (Song item in editableAlbum.Songs)
+                {
+                    Song newItem = new Song();
+                    newItem = item;
+                    albumView.Songs.Add(newItem);
+                }
+            }
             this.DataContext = albumView;
         }
 
@@ -54,7 +71,6 @@ namespace WpfApp4
                 {
                     if (item.Length != -1)
                     {
-
                         OK = true;
                     }
                     else
@@ -66,6 +82,7 @@ namespace WpfApp4
                 if (OK == true)
                 {
                     this.DialogResult = true;
+                    this.Close();
                 }
             }
             else
@@ -73,6 +90,7 @@ namespace WpfApp4
                 this.ShowMessageAsync("Alert", "Album needs to have at least one song");
             }
         }
+
         public int StringToSeconds(string s)
         {
             if (s.Contains(':') || s.Contains(',') || s.Contains('.'))
@@ -89,5 +107,6 @@ namespace WpfApp4
                 return -1;
             }
         }
+         
     }
 }

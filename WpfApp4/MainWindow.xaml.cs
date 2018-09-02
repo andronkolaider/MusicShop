@@ -29,12 +29,15 @@ namespace WpfApp4
         public MainWindow()
         {
             InitializeComponent();
-            MusicContext db = new MusicContext();
-            albumList = db.Albums.ToList();
-            musicListView.ItemsSource = db.Albums.Include("Songs").ToList();
-            comboBoxGenres.ItemsSource = db.Genres.ToList();
-            authorComboBox.ItemsSource = db.Authors.ToList();
-            genreComboBox.ItemsSource = db.Genres.ToList();
+            using (MusicContext db = new MusicContext())
+            {
+                albumList = db.Albums.ToList();
+                musicListView.ItemsSource = db.Albums.Include("Songs").ToList();
+                comboBoxGenres.ItemsSource = db.Genres.ToList();
+                authorComboBox.ItemsSource = db.Authors.ToList();
+                genreComboBox.ItemsSource = db.Genres.ToList();
+            }
+
         }
 
         private void comboBoxGenres_SelectionChanged(object sender, SelectionChangedEventArgs e)
@@ -107,8 +110,7 @@ namespace WpfApp4
            if (titleTextBox.Text != "" && urlTextBox.Text != "" && genreComboBox.SelectedIndex != -1 && authorComboBox.SelectedIndex != -1 && lengthTextBox.Text != "" && datePublishCalendar.SelectedDate != null && newAlbum.Image != null && songsExist==true)
             {
                 using (MusicContext db = new MusicContext())
-                {
-                    SecondsToMinutesConverter converter = new SecondsToMinutesConverter();
+                { 
                     newAlbum.Title = titleTextBox.Text;
                     string authName = (authorComboBox.SelectedItem as Author).Name.ToString();
                     string authGenre = (genreComboBox.SelectedItem as Genre).Name;
@@ -141,12 +143,25 @@ namespace WpfApp4
                 songsExist = false;
             }
         }
+
         public int StringToSeconds(string s)
         {
             List<string> time=s.Split(':').ToList();
             int result = int.Parse(time[0])*60;
             result += int.Parse(time[1]);
             return result;
+        }
+
+        private void Button_Click_1(object sender, RoutedEventArgs e)
+        {
+            using (MusicContext db = new MusicContext())
+            {
+                albumList = db.Albums.ToList();
+                musicListView.ItemsSource = db.Albums.Include("Songs").ToList();
+                comboBoxGenres.ItemsSource = db.Genres.ToList();
+                authorComboBox.ItemsSource = db.Authors.ToList();
+                genreComboBox.ItemsSource = db.Genres.ToList();
+            }
         }
     }
 }

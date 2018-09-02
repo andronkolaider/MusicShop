@@ -7,7 +7,7 @@
                     >
     <DataTemplate x:Key="dataTemplateAddSong">
         <Grid >
-            <Grid.RowDefinitions>
+            <Grid.RowDefinitions >
                 <RowDefinition/>
                 <RowDefinition/>
                 <RowDefinition/>

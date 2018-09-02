@@ -1,0 +1,46 @@
+﻿<Controls:MetroWindow x:Class="WpfApp4.WindowEditAlbum"
+                      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                      xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+                      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+                      xmlns:Controls="clr-namespace:MahApps.Metro.Controls;assembly=MahApps.Metro"
+                      mc:Ignorable="d"
+        Title="Edit Album" Height="450" Width="800">
+    <ScrollViewer>
+        <Grid>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="40"/>
+                <RowDefinition Height="40"/>
+                <RowDefinition Height="40"/>
+                <RowDefinition Height="1*"/>
+                <RowDefinition Height="40"/>
+                <RowDefinition Height="40"/>
+                <RowDefinition Height="1*"/>
+                <RowDefinition Height="40"/>
+                <RowDefinition Height="40"/>
+                <RowDefinition Height="40"/>
+            </Grid.RowDefinitions>
+            <Label HorizontalAlignment="Left">Author:</Label>
+            <ComboBox  DisplayMemberPath="Name" Name="AuthorsComboBox" HorizontalAlignment="Right" Width="500" Margin="0,5,20,5"></ComboBox>
+            <Label HorizontalAlignment="Left" Grid.Row="1">Title:</Label>
+            <TextBox Name="TitleTextBox" Grid.Row="1" Width="500" Margin="0,5,20,5" HorizontalAlignment="Right"></TextBox>
+            <Label HorizontalAlignment="Left" Grid.Row="2">Length:</Label>
+            <TextBox  Name="LengthtextBox" Grid.Row="2" Width="500" Margin="0,5,20,5" HorizontalAlignment="Right"></TextBox>
+            <Label HorizontalAlignment="Left" Grid.Row="3">Image:</Label>
+            <Image Height="200" Width="200" Margin="0,0,70,0" Grid.Row="3" HorizontalAlignment="Right" Name="AlbumImage"></Image>
+            <Button Click="ButtonChangeImage_Click" VerticalAlignment="Bottom" Name="ButtonChangeImage" Grid.Row="3" HorizontalAlignment="Right" Height="50">Change...</Button>
+            <Label Grid.Row="4">Genre:</Label>
+            <ComboBox DisplayMemberPath="Name" Name="GenreComboBox" Grid.Row="4" Width="500" HorizontalAlignment="Right" Margin="0,5,20,5"></ComboBox>
+            <Label Grid.Row="5" HorizontalAlignment="Left">Price:</Label>
+            <TextBox Name="PriceTextBox" Grid.Row="5" Width="500" Margin="0,5,20,5" HorizontalAlignment="Right"></TextBox>
+            <Label Grid.Row="6" HorizontalAlignment="Left">Date of publication:</Label>
+            <Label Name="oldDatePublished" Grid.Row="6" HorizontalAlignment="Center" Width="150" Height="50"></Label>
+            <Calendar Name="DatePublishedCalendar" Grid.Row="6" HorizontalAlignment="Right" Margin="0,0,70,0"></Calendar>
+            <Label Grid.Row="7" HorizontalAlignment="Left"> Shop URL:</Label>
+            <TextBox Name="URLTextBox" Grid.Row="7" HorizontalAlignment="Right" Width="500" Margin="0,5,80,5"></TextBox>
+            <Button Grid.Row="7" HorizontalAlignment="Right" Margin="5" Name="ButtonOpenURL" Click="ButtonOpenURL_Click">Open...</Button>
+            <Button Grid.Row="8" Name="EditAlbumSongs" Click="EditAlbumSongs_Click">Edit songs...</Button>
+            <Button Grid.Row="9" Name="ButtonConfirm" Click="ButtonConfirm_Click"></Button>
+        </Grid>
+    </ScrollViewer>
+</Controls:MetroWindow>

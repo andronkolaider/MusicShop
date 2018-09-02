@@ -28,5 +28,13 @@ namespace WpfApp4
                 }
             }
         }
+
+        private void ButtonEdit_Click(object sender, RoutedEventArgs e)
+        {
+            int ID = Convert.ToInt32((sender as Button).Tag);
+            WindowEditAlbum window = new WindowEditAlbum(ID);
+            window.ShowDialog();         
+              
+        }
     }
 }

@@ -17,6 +17,7 @@
             <ColumnDefinition Width="317*"/>
         </Grid.ColumnDefinitions>
         <Button Click="Button_Click">Open tools</Button>
+        <Button VerticalAlignment="Bottom" Grid.Row="1" Click="Button_Click_1">Refresh</Button>
         <Controls:Flyout  Name="flyOutEditDB" Header="Tools" Width="261" Position="Left" HorizontalAlignment="Left" Grid.RowSpan="2">
             <Grid>
                 <Grid.RowDefinitions>
@@ -55,7 +56,7 @@
 
             </Grid>            
         </Controls:Flyout>
-     
+        <Button VerticalAlignment="Bottom" Grid.Row="1" Click="Button_Click_1"> Refresh</Button>
         <ComboBox SelectionChanged="comboBoxGenres_SelectionChanged" ItemsSource="{Binding Path=Genres}" DisplayMemberPath="Name" Name="comboBoxGenres" Grid.Column="1"  MouseRightButtonUp="comboBoxGenres_MouseRightButtonUp"  ></ComboBox>
         <ListView  Name="musicListView" Grid.Row="1" Grid.Column="1" ItemTemplate="{StaticResource DataTemplateMusic}" ></ListView>
         <Controls:Flyout  BorderBrush="Red" Grid.Column="0" Grid.RowSpan="2" Position="Left" IsEnabled="True" Name="calendarFlyout" Header="Select Date" Width="261" >
