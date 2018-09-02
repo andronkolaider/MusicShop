@@ -1,0 +1,44 @@
+﻿<Controls:MetroWindow x:Class="WpfApp4.addSongsWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:Controls="clr-namespace:MahApps.Metro.Controls;assembly=MahApps.Metro"
+        xmlns:local="clr-namespace:WpfApp4"
+        mc:Ignorable="d"
+        Title="addSongsWindow" Height="450" Width="800" ResizeMode="NoResize">
+
+    <!--<DockPanel MouseWheel="StackPanel_MouseWheel">
+        <ListView Width="710" HorizontalAlignment="Stretch" ScrollViewer.VerticalScrollBarVisibility="Visible" Name="SongsListView" ItemTemplate="{StaticResource dataTemplateAddSong}">
+        </ListView>
+        <Button VerticalAlignment="Top" Name="ButtonAddSong" Click="ButtonAddSong_Click" Height="75" Width="75" FontSize="72">+</Button>
+        <Button Height="75" Width="75" VerticalAlignment="Bottom">OK</Button>
+    </DockPanel>-->
+
+    <Grid>
+
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="1*"/>
+            <ColumnDefinition Width="80"/>
+        </Grid.ColumnDefinitions>
+
+        <Grid.RowDefinitions>
+            <RowDefinition Height="1*"/>
+            <RowDefinition Height="1*"/>
+            <RowDefinition Height="1*"/>
+            <RowDefinition Height="1*"/>
+            <RowDefinition Height="1*"/>
+            <RowDefinition Height="1*"/>
+        </Grid.RowDefinitions>
+     
+        <!--<DockPanel MouseWheel="StackPanel_MouseWheel">-->
+            <ListView ItemsSource="{Binding Songs}" Grid.Row="0" Grid.RowSpan="7" Width="710" HorizontalAlignment="Stretch" ScrollViewer.VerticalScrollBarVisibility="Visible" Name="SongsListView" ItemTemplate="{StaticResource dataTemplateAddSong}">
+            </ListView>
+        <!--</DockPanel>-->
+        <Button Grid.Row="0" Grid.Column="1" VerticalAlignment="Stretch" Name="ButtonAddSong" Click="ButtonAddSong_Click" FontSize="20">+</Button>
+        <Button Name="ButtonConfirm" Click="ButtonConfirm_Click" Grid.Row="6" Grid.Column="1" VerticalAlignment="Stretch">OK</Button>
+        <Button Name="ButtonDeleteSong" Click="ButtonDeleteSong_Click" Grid.Row="1" Grid.Column="1" FontSize="20">-</Button>
+
+    </Grid>
+
+</Controls:MetroWindow>

@@ -1,0 +1,72 @@
+﻿<Controls:MetroWindow x:Class="WpfApp4.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:Controls="clr-namespace:MahApps.Metro.Controls;assembly=MahApps.Metro"
+        xmlns:local="clr-namespace:WpfApp4"
+        mc:Ignorable="d" 
+        Title="Music shop" Height="700" Width="1300" ResizeMode="NoResize">
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="13*"/>
+            <RowDefinition Height="197*"/>
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="80*"/>
+            <ColumnDefinition Width="317*"/>
+        </Grid.ColumnDefinitions>
+        <Button Click="Button_Click">Open tools</Button>
+        <Controls:Flyout  Name="flyOutEditDB" Header="Tools" Width="261" Position="Left" HorizontalAlignment="Left" Grid.RowSpan="2">
+            <Grid>
+                <Grid.RowDefinitions>
+                    <RowDefinition/>
+                    <RowDefinition/>
+                    <RowDefinition/>
+                    <RowDefinition/>
+                    <RowDefinition/>
+                    <RowDefinition/>
+                    <RowDefinition/>
+                    <RowDefinition/>
+                    <RowDefinition/>
+                    <RowDefinition/>
+                    <RowDefinition/>
+                    <RowDefinition/>
+                </Grid.RowDefinitions>
+                <Label Grid.Row="0" FontFamily="Feast of Flesh BB" FontSize="20" HorizontalAlignment="Center">Adding new album</Label>
+                <Label Grid.Row="1"  FontFamily="Feast of Flesh BB" FontSize="20">Title:</Label>
+                <Label Grid.Row="2"  FontFamily="Feast of Flesh BB" FontSize="20">Author:</Label>
+                <Label Grid.Row="3"  FontFamily="Feast of Flesh BB" FontSize="20">Length:</Label>
+                <Label Grid.Row="4"  FontFamily="Feast of Flesh BB" FontSize="20">Image:</Label>
+                <Label Grid.Row="5"  FontFamily="Feast of Flesh BB" FontSize="20">Genre:</Label>
+                <Label Grid.Row="6"  FontFamily="Feast of Flesh BB" FontSize="20">Price:</Label>
+                <Label Grid.Row="7"  FontFamily="Feast of Flesh BB" FontSize="20">Date of publish:</Label>
+                <Label Grid.Row="8"  FontFamily="Feast of Flesh BB" FontSize="20">Google Music ULR:</Label>
+                <TextBox  VerticalAlignment="Top" Height="15" Width="180" Grid.Row="1" HorizontalAlignment="Right" Name="titleTextBox"/>
+                <ComboBox DisplayMemberPath="Name" VerticalAlignment="Top" Height="15" Width="180" Grid.Row="2" HorizontalAlignment="Right" Name="authorComboBox"></ComboBox>
+                <TextBox VerticalAlignment="Top" Height="15" Width="180" Grid.Row="3" HorizontalAlignment="Right" Name="lengthTextBox"/>
+                <Button Click="selectImageButton_Click" HorizontalAlignment="Right" VerticalAlignment="Top" Height="30" Width="100" Name="selectImageButton"  Grid.Row="4">Select image...</Button>
+                <ComboBox DisplayMemberPath="Name" VerticalAlignment="Top" Height="15" Width="180" Grid.Row="5" HorizontalAlignment="Right" Name="genreComboBox"></ComboBox>
+                <TextBox VerticalAlignment="Top" Height="15" Width="180"  Grid.Row="6" HorizontalAlignment="Right" Name="priceTextBox"/>
+                <Button Click="datePublishedButton_Click" HorizontalAlignment="Right" VerticalAlignment="Top" Height="30" Width="100" Name="datePublishedButton"  Grid.Row="7">Select date...</Button>
+                <TextBox VerticalAlignment="Top" Height="15" Width="260" Grid.Row="9" HorizontalAlignment="Right" Name="urlTextBox"/>
+                <Button Grid.Row="10" Name="openAddSongsWondow" Click="openAddSongsWondow_Click">Add songs</Button>
+                <Button Name="confirmButton" Click="confirmButton_Click" Grid.Row="11">Confirm</Button>
+
+            </Grid>            
+        </Controls:Flyout>
+     
+        <ComboBox SelectionChanged="comboBoxGenres_SelectionChanged" ItemsSource="{Binding Path=Genres}" DisplayMemberPath="Name" Name="comboBoxGenres" Grid.Column="1"  MouseRightButtonUp="comboBoxGenres_MouseRightButtonUp"  ></ComboBox>
+        <ListView  Name="musicListView" Grid.Row="1" Grid.Column="1" ItemTemplate="{StaticResource DataTemplateMusic}" ></ListView>
+        <Controls:Flyout  BorderBrush="Red" Grid.Column="0" Grid.RowSpan="2" Position="Left" IsEnabled="True" Name="calendarFlyout" Header="Select Date" Width="261" >
+            <Grid>
+                <Grid.RowDefinitions>
+                    <RowDefinition/>
+                    <RowDefinition/>
+                </Grid.RowDefinitions>
+                <Calendar IsEnabled="True" Name="datePublishCalendar" Grid.Row="0"></Calendar>
+                <Button Click="buttonDateConfirm_Click" Height="50" VerticalAlignment="Top" Width="180" HorizontalAlignment="Left" Name="buttonDateConfirm" Grid.Row="1">Confirm</Button>
+            </Grid>
+        </Controls:Flyout>
+    </Grid>
+</Controls:MetroWindow>

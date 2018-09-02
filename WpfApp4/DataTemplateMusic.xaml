@@ -1,0 +1,57 @@
+﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                    xmlns:local="clr-namespace:WpfApp4"
+                    x:Class="WpfApp4.DataTemplateMusic"
+                    x:ClassModifier="public"
+                    >
+    <DataTemplate x:Key="DataTemplateMusic" >
+        <Grid>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="200"></ColumnDefinition>
+                <ColumnDefinition></ColumnDefinition>
+            </Grid.ColumnDefinitions>
+            <Grid.RowDefinitions>
+                <RowDefinition></RowDefinition>
+            </Grid.RowDefinitions>
+            <StackPanel>
+                <Image Margin="7" Height="200" Width="200" Source="{Binding Image}" HorizontalAlignment="Left"></Image>
+                <TextBlock TextAlignment="Center" FontSize="27" FontFamily="Feast of Flesh BB">
+                    <Run Foreground="Orange" Text="{Binding Length,Converter={local:SecondsToMinutesConverter},StringFormat='Length: {0}'}"></Run>
+                </TextBlock>
+                <TextBlock TextAlignment="Center" FontSize="27" FontFamily="Feast of Flesh BB">
+                    <Run Foreground="OrangeRed" Text="{Binding Price,StringFormat='Price: {0} UAH',Converter={local:DecimalToMoney}}"></Run>
+                </TextBlock>
+                <Button Tag="{Binding Id}"  Name="BuyButton" Click="BaiButtonClick" FontSize="20" FontFamily="Feast of Flesh BB" Grid.Row="2" Height="40" Width="100" HorizontalAlignment="Center" VerticalAlignment="Bottom" Margin="10">Buy</Button>
+            </StackPanel>
+            <StackPanel Grid.Column="1">
+                <TextBlock FontSize="50" FontFamily="the dark"  >
+                    <Run Foreground="Orange" Text="{Binding Title}"></Run>
+                </TextBlock>
+                <TextBlock FontSize="35" FontFamily="the dark" >
+                    <Run Foreground="DarkOrange" Text="{Binding Author.Name}"></Run>
+                </TextBlock>
+                <TextBlock  FontSize="30" FontFamily="the dark">
+                    <Run Foreground="OrangeRed" Text="{Binding Genre.Name}"></Run>
+                </TextBlock>
+                <ListView Margin="10" ItemsSource="{Binding Songs}" Height="200" >
+                    <ListView.ItemTemplate >
+                        <DataTemplate >
+                            <Grid>
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="500"></ColumnDefinition>
+                                    <ColumnDefinition></ColumnDefinition>
+                                </Grid.ColumnDefinitions>
+                                <TextBlock FontFamily="Feast of Flesh BB" FontSize="26" FontStretch="Expanded" Grid.Column="0" >
+                                    <Run Foreground="Orange" Text="{Binding Name}"></Run>
+                                </TextBlock>
+                                <TextBlock FontFamily="Feast of Flesh BB" FontSize="26" Grid.Column="1">
+                                    <Run Foreground="Orange" Text="{Binding Length, Converter={local:SecondsToMinutesConverter}}"></Run>
+                                </TextBlock>
+                            </Grid>
+                        </DataTemplate>
+                    </ListView.ItemTemplate>
+                </ListView>
+            </StackPanel>
+        </Grid>
+    </DataTemplate>
+</ResourceDictionary>
