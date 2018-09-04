@@ -9,6 +9,7 @@ using System.Windows.Controls;
 
 namespace WpfApp4
 {
+
     partial class DataTemplateMusic : ResourceDictionary
     {
         public DataTemplateMusic()
@@ -32,7 +33,7 @@ namespace WpfApp4
         private void ButtonEdit_Click(object sender, RoutedEventArgs e)
         {
             int ID = Convert.ToInt32((sender as Button).Tag);
-            WindowEditAlbum window = new WindowEditAlbum(ID);
+            EditAlbumWindow window = new EditAlbumWindow(ID);
             window.ShowDialog();         
               
         }

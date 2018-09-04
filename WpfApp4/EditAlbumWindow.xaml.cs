@@ -23,15 +23,34 @@ namespace WpfApp4
     /// <summary>
     /// Interaction logic for Window1.xaml
     /// </summary>
-    public partial class WindowEditAlbum : MetroWindow
+    class SongComparer : IEqualityComparer<Song>
+    {
+        public bool Equals(Song x, Song y)
+        {
+            if (x.Id == y.Id)
+            {
+                return true;
+            }
+            else
+            {
+                return false;
+            }
+        }
+
+        public int GetHashCode(Song obj)
+        {
+            return obj.GetHashCode();
+        }
+    }
+    public partial class EditAlbumWindow : MetroWindow
     {
         Album editableAlbum;
-        public WindowEditAlbum(int ID)
+        public EditAlbumWindow(int ID)
         {
             InitializeComponent();
             using (MusicContext db = new MusicContext())
             {
-                editableAlbum = db.Albums.FirstOrDefault(x => x.Id == ID);
+                editableAlbum = db.Albums.Include("Songs").FirstOrDefault(x => x.Id == ID);
                 AuthorsComboBox.ItemsSource = db.Authors.ToList();
                 GenreComboBox.ItemsSource = db.Genres.ToList();
             }
@@ -72,33 +91,29 @@ namespace WpfApp4
 
         private void EditAlbumSongs_Click(object sender, RoutedEventArgs e)
         {
-            addSongsWindow addSongs = new addSongsWindow(editableAlbum);
-            if (addSongs.ShowDialog() == true)
-            {
-                editableAlbum.Songs = addSongs.albumView.Songs.ToList();
-            }
+            EditSongsWindow window = new EditSongsWindow(editableAlbum);
+            window.ShowDialog();
         }
 
         private void ButtonConfirm_Click(object sender, RoutedEventArgs e)
         {
             using (MusicContext db = new MusicContext())
             {
-                 Album album = db.Albums.Find(editableAlbum.Id);
-                db.Albums.AddOrUpdate(editableAlbum);
-                //db.Albums.FirstOrDefault(x => x.Id == editableAlbum.Id).Author = editableAlbum.Author;
-                //db.Albums.FirstOrDefault(x => x.Id == editableAlbum.Id).DatePublished = editableAlbum.DatePublished;
-                //db.Albums.FirstOrDefault(x => x.Id == editableAlbum.Id).Genre = editableAlbum.Genre;
-                //db.Albums.FirstOrDefault(x => x.Id == editableAlbum.Id).Image = editableAlbum.Image;
-                //db.Albums.FirstOrDefault(x => x.Id == editableAlbum.Id).Length = editableAlbum.Length;
-                //db.Albums.FirstOrDefault(x => x.Id == editableAlbum.Id).Price = editableAlbum.Price;
-                //db.Albums.FirstOrDefault(x => x.Id == editableAlbum.Id).ShopUrl = editableAlbum.ShopUrl;
-                //db.Albums.FirstOrDefault(x => x.Id == editableAlbum.Id).Title = editableAlbum.Title;
-                //db.Albums.FirstOrDefault(x => x.Id == editableAlbum.Id).Songs = editableAlbum.Songs; //!!!!!!!!!!!!
-              db.Entry(album).CurrentValues.SetValues(editableAlbum);
+                Album album = db.Albums.Find(editableAlbum.Id);
+                if (album != null)
+                {
+                    if (editableAlbum.Songs.Count == 0)
+                    {
+                        album.Songs.Clear();
+                    }
+                    else
+                    {
+                        album.Songs.Clear();
+                        album.Songs = editableAlbum.Songs;
+                    }
+                }
                 db.SaveChanges();
-               
             }
-
             this.Close();
         }
     }

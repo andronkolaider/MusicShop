@@ -24,28 +24,10 @@ namespace WpfApp4
     public partial class addSongsWindow : MetroWindow
     {
         public AlbumViewModel albumView;
-        Album editableAlbum;
+
         public addSongsWindow()
         {
             InitializeComponent();
-            this.DataContext = albumView;
-        }
-
-        public addSongsWindow(Album album)
-        {
-            InitializeComponent();
-            
-            using (MusicContext db = new MusicContext())
-            {
-                albumView = new AlbumViewModel();
-                editableAlbum = db.Albums.FirstOrDefault(x => x.Id == album.Id);
-                foreach (Song item in editableAlbum.Songs)
-                {
-                    Song newItem = new Song();
-                    newItem = item;
-                    albumView.Songs.Add(newItem);
-                }
-            }
             this.DataContext = albumView;
         }
 

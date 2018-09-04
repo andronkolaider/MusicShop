@@ -33,22 +33,40 @@ namespace WpfApp4
             {
                 albumList = db.Albums.ToList();
                 musicListView.ItemsSource = db.Albums.Include("Songs").ToList();
-                comboBoxGenres.ItemsSource = db.Genres.ToList();
+              //  comboBoxSearch.ItemsSource = db.Genres.ToList();
                 authorComboBox.ItemsSource = db.Authors.ToList();
                 genreComboBox.ItemsSource = db.Genres.ToList();
             }
 
         }
 
-        private void comboBoxGenres_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        private void comboBoxSearch_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
             musicListView.ItemsSource = albumList;
             List<Album> tempList = new List<Album>();
             foreach (Album item in musicListView.Items)
-            {
-                if (comboBoxGenres.SelectedValue == item.Genre)
+            {          
+                if (comboBoxSearch.SelectedItem is Author)
                 {
-                    tempList.Add(item);
+                    if ((comboBoxSearch.SelectedItem as Author).Id == item.Author.Id)
+                    {
+                        tempList.Add(item);
+                    }
+                }
+                else if (comboBoxSearch.SelectedItem is Genre)
+                {
+                    if ((comboBoxSearch.SelectedItem as Genre).Id == item.Genre.Id)
+                    {
+                        tempList.Add(item);
+                    }
+                }
+                else if (comboBoxSearch.SelectedItem is Album)
+                {
+                   
+                    if ((comboBoxSearch.SelectedItem as Album).Title == item.Title)
+                    {
+                        tempList.Add(item);
+                    }
                 }
             }
             musicListView.ItemsSource = tempList;
@@ -60,7 +78,7 @@ namespace WpfApp4
             newAlbum = new Album();
         }
 
-        private void comboBoxGenres_MouseRightButtonUp(object sender, MouseButtonEventArgs e)
+        private void comboBoxSearch_MouseRightButtonUp(object sender, MouseButtonEventArgs e)
         {
             (sender as System.Windows.Controls.ComboBox).IsDropDownOpen = false;
             (sender as System.Windows.Controls.ComboBox).SelectedIndex = -1;
@@ -107,14 +125,14 @@ namespace WpfApp4
 
         private void confirmButton_Click(object sender, RoutedEventArgs e)
         {
-           if (titleTextBox.Text != "" && urlTextBox.Text != "" && genreComboBox.SelectedIndex != -1 && authorComboBox.SelectedIndex != -1 && lengthTextBox.Text != "" && datePublishCalendar.SelectedDate != null && newAlbum.Image != null && songsExist==true)
+            if (titleTextBox.Text != "" && urlTextBox.Text != "" && genreComboBox.SelectedIndex != -1 && authorComboBox.SelectedIndex != -1 && lengthTextBox.Text != "" && datePublishCalendar.SelectedDate != null && newAlbum.Image != null && songsExist == true)
             {
                 using (MusicContext db = new MusicContext())
-                { 
+                {
                     newAlbum.Title = titleTextBox.Text;
                     string authName = (authorComboBox.SelectedItem as Author).Name.ToString();
                     string authGenre = (genreComboBox.SelectedItem as Genre).Name;
-                     newAlbum.Author = db.Authors.FirstOrDefault(x=> x.Name == authName);
+                    newAlbum.Author = db.Authors.FirstOrDefault(x => x.Name == authName);
                     newAlbum.Genre = db.Genres.FirstOrDefault(x => x.Name == authGenre);
                     newAlbum.Length = StringToSeconds(lengthTextBox.Text);
                     newAlbum.Price = decimal.Parse(priceTextBox.Text);
@@ -146,8 +164,8 @@ namespace WpfApp4
 
         public int StringToSeconds(string s)
         {
-            List<string> time=s.Split(':').ToList();
-            int result = int.Parse(time[0])*60;
+            List<string> time = s.Split(':').ToList();
+            int result = int.Parse(time[0]) * 60;
             result += int.Parse(time[1]);
             return result;
         }
@@ -158,10 +176,34 @@ namespace WpfApp4
             {
                 albumList = db.Albums.ToList();
                 musicListView.ItemsSource = db.Albums.Include("Songs").ToList();
-                comboBoxGenres.ItemsSource = db.Genres.ToList();
+                comboBoxSearch.ItemsSource = db.Genres.ToList();
                 authorComboBox.ItemsSource = db.Authors.ToList();
                 genreComboBox.ItemsSource = db.Genres.ToList();
             }
+        }
+
+        private void RadioButton_Click(object sender, RoutedEventArgs e)
+        {
+            using (MusicContext db = new MusicContext())
+            {
+
+                if ((sender as System.Windows.Controls.RadioButton).Tag.ToString() == "Author")
+                {
+                    comboBoxSearch.ItemsSource = db.Authors.ToList();
+                    comboBoxSearch.DisplayMemberPath = "Name";
+                }
+                else if ((sender as System.Windows.Controls.RadioButton).Tag.ToString() == "Genre")
+                {
+                    comboBoxSearch.ItemsSource = db.Genres.ToList();
+                    comboBoxSearch.DisplayMemberPath = "Name";
+                }
+                else if ((sender as System.Windows.Controls.RadioButton).Tag.ToString() == "Title")
+                {
+                    comboBoxSearch.ItemsSource = db.Albums.ToList();
+                    comboBoxSearch.DisplayMemberPath = "Title";
+                }
+            }
+
         }
     }
 }

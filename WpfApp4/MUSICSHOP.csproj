@@ -75,10 +75,17 @@
       <SubType>Designer</SubType>
     </ApplicationDefinition>
     <Compile Include="Models\AlbumViewModel.cs" />
-    <Compile Include="WindowEditAlbum.xaml.cs">
-      <DependentUpon>WindowEditAlbum.xaml</DependentUpon>
+    <Compile Include="EditSongsWindow.xaml.cs">
+      <DependentUpon>EditSongsWindow.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="EditAlbumWindow.xaml.cs">
+      <DependentUpon>EditAlbumWindow.xaml</DependentUpon>
     </Compile>
     <Page Include="addSongsWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="DataTemplateEditSongs.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -119,7 +126,11 @@
       <DependentUpon>MainWindow.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
-    <Page Include="WindowEditAlbum.xaml">
+    <Page Include="EditSongsWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="EditAlbumWindow.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

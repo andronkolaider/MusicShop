@@ -18,7 +18,20 @@
         </Grid.ColumnDefinitions>
         <Button Click="Button_Click">Open tools</Button>
         <Button VerticalAlignment="Bottom" Grid.Row="1" Click="Button_Click_1">Refresh</Button>
-        <Controls:Flyout  Name="flyOutEditDB" Header="Tools" Width="261" Position="Left" HorizontalAlignment="Left" Grid.RowSpan="2">
+        <Grid Grid.Row="1">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="30"/>
+                <RowDefinition Height="30"/>
+                <RowDefinition Height="30"/>
+                <RowDefinition Height="30"/>
+                <RowDefinition Height="30"/>
+            </Grid.RowDefinitions>
+            <Label Grid.Row="0" VerticalAlignment="Top">Search by:</Label>
+            <RadioButton Tag="Title" Click="RadioButton_Click" Grid.Row="1">by Title</RadioButton>
+            <RadioButton Tag="Author" Click="RadioButton_Click" Grid.Row="2">by Author</RadioButton>
+            <RadioButton Tag="Genre" Click="RadioButton_Click" Grid.Row="3">by Genre</RadioButton>
+        </Grid>
+        <Controls:Flyout Name="flyOutEditDB" Header="Tools" Width="261" Position="Left" HorizontalAlignment="Left" Grid.RowSpan="2">
             <Grid>
                 <Grid.RowDefinitions>
                     <RowDefinition/>
@@ -54,10 +67,9 @@
                 <Button Grid.Row="10" Name="openAddSongsWondow" Click="openAddSongsWondow_Click">Add songs</Button>
                 <Button Name="confirmButton" Click="confirmButton_Click" Grid.Row="11">Confirm</Button>
 
-            </Grid>            
+            </Grid>
         </Controls:Flyout>
-        <Button VerticalAlignment="Bottom" Grid.Row="1" Click="Button_Click_1"> Refresh</Button>
-        <ComboBox SelectionChanged="comboBoxGenres_SelectionChanged" ItemsSource="{Binding Path=Genres}" DisplayMemberPath="Name" Name="comboBoxGenres" Grid.Column="1"  MouseRightButtonUp="comboBoxGenres_MouseRightButtonUp"  ></ComboBox>
+        <ComboBox SelectionChanged="comboBoxSearch_SelectionChanged" Name="comboBoxSearch" Grid.Column="1"  MouseRightButtonUp="comboBoxSearch_MouseRightButtonUp"  ></ComboBox>
         <ListView  Name="musicListView" Grid.Row="1" Grid.Column="1" ItemTemplate="{StaticResource DataTemplateMusic}" ></ListView>
         <Controls:Flyout  BorderBrush="Red" Grid.Column="0" Grid.RowSpan="2" Position="Left" IsEnabled="True" Name="calendarFlyout" Header="Select Date" Width="261" >
             <Grid>
@@ -65,8 +77,10 @@
                     <RowDefinition/>
                     <RowDefinition/>
                 </Grid.RowDefinitions>
-                <Calendar IsEnabled="True" Name="datePublishCalendar" Grid.Row="0"></Calendar>
-                <Button Click="buttonDateConfirm_Click" Height="50" VerticalAlignment="Top" Width="180" HorizontalAlignment="Left" Name="buttonDateConfirm" Grid.Row="1">Confirm</Button>
+                <Viewbox Grid.Row="0">
+                    <Calendar  IsEnabled="True" Name="datePublishCalendar" ></Calendar>
+                </Viewbox>
+                <Button Click="buttonDateConfirm_Click" Height="50" VerticalAlignment="Top" Width="260" HorizontalAlignment="Left" Name="buttonDateConfirm" Grid.Row="1">Confirm</Button>
             </Grid>
         </Controls:Flyout>
     </Grid>
