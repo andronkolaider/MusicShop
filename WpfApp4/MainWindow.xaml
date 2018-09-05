@@ -77,8 +77,8 @@
                     <RowDefinition/>
                     <RowDefinition/>
                 </Grid.RowDefinitions>
-                <Viewbox Grid.Row="0">
-                    <Calendar  IsEnabled="True" Name="datePublishCalendar" ></Calendar>
+                <Viewbox Name="CalendarViewBox" Grid.Row="0">
+                    <Calendar GotFocus="datePublishCalendar_GotFocus"  Name="datePublishCalendar" ></Calendar>
                 </Viewbox>
                 <Button Click="buttonDateConfirm_Click" Height="50" VerticalAlignment="Top" Width="260" HorizontalAlignment="Left" Name="buttonDateConfirm" Grid.Row="1">Confirm</Button>
             </Grid>

@@ -33,7 +33,6 @@ namespace WpfApp4
             {
                 albumList = db.Albums.ToList();
                 musicListView.ItemsSource = db.Albums.Include("Songs").ToList();
-              //  comboBoxSearch.ItemsSource = db.Genres.ToList();
                 authorComboBox.ItemsSource = db.Authors.ToList();
                 genreComboBox.ItemsSource = db.Genres.ToList();
             }
@@ -96,7 +95,7 @@ namespace WpfApp4
                 }
                 else if (image.FileName.Contains(".jpg") == false)
                 {
-                    this.ShowMessageAsync("Alert", "Image has to be in JPEG format", MessageDialogStyle.Affirmative);
+                    this.ShowMessageAsync("Alert", "Image has to be in JPEG format");
                 }
             }
         }
@@ -117,7 +116,7 @@ namespace WpfApp4
             }
             else
             {
-                this.ShowMessageAsync("Alert", "Please select date", MessageDialogStyle.Affirmative);
+                this.ShowMessageAsync("Alert", "Please select date");
             }
             calendarFlyout.IsOpen = false;
             flyOutEditDB.IsOpen = true;
@@ -204,6 +203,11 @@ namespace WpfApp4
                 }
             }
 
+        }
+
+        private void datePublishCalendar_GotFocus(object sender, RoutedEventArgs e)
+        {
+            buttonDateConfirm.Focus();
         }
     }
 }
