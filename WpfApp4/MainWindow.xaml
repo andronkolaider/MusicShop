@@ -6,7 +6,7 @@
         xmlns:Controls="clr-namespace:MahApps.Metro.Controls;assembly=MahApps.Metro"
         xmlns:local="clr-namespace:WpfApp4"
         mc:Ignorable="d" 
-        Title="Music shop" Height="700" Width="1300" ResizeMode="NoResize">
+        Title="Music shop" Height="700" Width="1300" ResizeMode="NoResize" Icon="Icon2.ico">
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="13*"/>
@@ -70,7 +70,7 @@
             </Grid>
         </Controls:Flyout>
         <ComboBox SelectionChanged="comboBoxSearch_SelectionChanged" Name="comboBoxSearch" Grid.Column="1"  MouseRightButtonUp="comboBoxSearch_MouseRightButtonUp"  ></ComboBox>
-        <ListView  Name="musicListView" Grid.Row="1" Grid.Column="1" ItemTemplate="{StaticResource DataTemplateMusic}" ></ListView>
+        <ListView  Name="musicListView" Grid.Row="1" Grid.Column="1" ItemTemplate="{StaticResource DataTemplateMusic}"></ListView>
         <Controls:Flyout  BorderBrush="Red" Grid.Column="0" Grid.RowSpan="2" Position="Left" IsEnabled="True" Name="calendarFlyout" Header="Select Date" Width="261" >
             <Grid>
                 <Grid.RowDefinitions>
