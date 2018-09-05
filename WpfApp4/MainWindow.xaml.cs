@@ -39,7 +39,7 @@ namespace WpfApp4
 
         }
 
-        private void comboBoxSearch_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        private void ComboBoxSearch_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
             musicListView.ItemsSource = albumList;
             List<Album> tempList = new List<Album>();
@@ -77,14 +77,14 @@ namespace WpfApp4
             newAlbum = new Album();
         }
 
-        private void comboBoxSearch_MouseRightButtonUp(object sender, MouseButtonEventArgs e)
+        private void ComboBoxSearch_MouseRightButtonUp(object sender, MouseButtonEventArgs e)
         {
             (sender as System.Windows.Controls.ComboBox).IsDropDownOpen = false;
             (sender as System.Windows.Controls.ComboBox).SelectedIndex = -1;
             musicListView.ItemsSource = albumList;
         }
 
-        private void selectImageButton_Click(object sender, RoutedEventArgs e)
+        private void SelectImageButton_Click(object sender, RoutedEventArgs e)
         {
             using (OpenFileDialog image = new OpenFileDialog())
             {
@@ -102,13 +102,13 @@ namespace WpfApp4
 
 
 
-        private void datePublishedButton_Click(object sender, RoutedEventArgs e)
+        private void DatePublishedButton_Click(object sender, RoutedEventArgs e)
         {
             flyOutEditDB.IsOpen = false;
             calendarFlyout.IsOpen = true;
         }
 
-        private void buttonDateConfirm_Click(object sender, RoutedEventArgs e)
+        private void ButtonDateConfirm_Click(object sender, RoutedEventArgs e)
         {
             if (datePublishCalendar.SelectedDate != null)
             {
@@ -122,7 +122,7 @@ namespace WpfApp4
             flyOutEditDB.IsOpen = true;
         }
 
-        private void confirmButton_Click(object sender, RoutedEventArgs e)
+        private void ConfirmButton_Click(object sender, RoutedEventArgs e)
         {
             if (titleTextBox.Text != "" && urlTextBox.Text != "" && genreComboBox.SelectedIndex != -1 && authorComboBox.SelectedIndex != -1 && lengthTextBox.Text != "" && datePublishCalendar.SelectedDate != null && newAlbum.Image != null && songsExist == true)
             {
@@ -147,7 +147,7 @@ namespace WpfApp4
             }
         }
 
-        private void openAddSongsWondow_Click(object sender, RoutedEventArgs e)
+        private void OpenAddSongsWondow_Click(object sender, RoutedEventArgs e)
         {
             addSongsWindow window = new addSongsWindow();
             if (window.ShowDialog() == true)
@@ -185,7 +185,6 @@ namespace WpfApp4
         {
             using (MusicContext db = new MusicContext())
             {
-
                 if ((sender as System.Windows.Controls.RadioButton).Tag.ToString() == "Author")
                 {
                     comboBoxSearch.ItemsSource = db.Authors.ToList();
@@ -202,10 +201,9 @@ namespace WpfApp4
                     comboBoxSearch.DisplayMemberPath = "Title";
                 }
             }
-
         }
 
-        private void datePublishCalendar_GotFocus(object sender, RoutedEventArgs e)
+        private void DatePublishCalendar_GotFocus(object sender, RoutedEventArgs e)
         {
             buttonDateConfirm.Focus();
         }

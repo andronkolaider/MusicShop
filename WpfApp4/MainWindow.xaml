@@ -59,17 +59,17 @@
                 <TextBox  VerticalAlignment="Top" Height="15" Width="180" Grid.Row="1" HorizontalAlignment="Right" Name="titleTextBox"/>
                 <ComboBox DisplayMemberPath="Name" VerticalAlignment="Top" Height="15" Width="180" Grid.Row="2" HorizontalAlignment="Right" Name="authorComboBox"></ComboBox>
                 <TextBox VerticalAlignment="Top" Height="15" Width="180" Grid.Row="3" HorizontalAlignment="Right" Name="lengthTextBox" Text="00:00"/>
-                <Button Click="selectImageButton_Click" HorizontalAlignment="Right" VerticalAlignment="Top" Height="30" Width="100" Name="selectImageButton"  Grid.Row="4">Select image...</Button>
+                <Button Click="SelectImageButton_Click" HorizontalAlignment="Right" VerticalAlignment="Top" Height="30" Width="100" Name="selectImageButton"  Grid.Row="4">Select image...</Button>
                 <ComboBox DisplayMemberPath="Name" VerticalAlignment="Top" Height="15" Width="180" Grid.Row="5" HorizontalAlignment="Right" Name="genreComboBox"></ComboBox>
                 <TextBox VerticalAlignment="Top" Height="15" Width="180"  Grid.Row="6" HorizontalAlignment="Right" Name="priceTextBox"/>
-                <Button Click="datePublishedButton_Click" HorizontalAlignment="Right" VerticalAlignment="Top" Height="30" Width="100" Name="datePublishedButton"  Grid.Row="7">Select date...</Button>
+                <Button Click="DatePublishedButton_Click" HorizontalAlignment="Right" VerticalAlignment="Top" Height="30" Width="100" Name="datePublishedButton"  Grid.Row="7">Select date...</Button>
                 <TextBox VerticalAlignment="Top" Height="15" Width="260" Grid.Row="9" HorizontalAlignment="Right" Name="urlTextBox"/>
-                <Button Grid.Row="10" Name="openAddSongsWondow" Click="openAddSongsWondow_Click">Add songs</Button>
-                <Button Name="confirmButton" Click="confirmButton_Click" Grid.Row="11">Confirm</Button>
+                <Button Grid.Row="10" Name="openAddSongsWondow" Click="OpenAddSongsWondow_Click">Add songs</Button>
+                <Button Name="confirmButton" Click="ConfirmButton_Click" Grid.Row="11">Confirm</Button>
 
             </Grid>
         </Controls:Flyout>
-        <ComboBox SelectionChanged="comboBoxSearch_SelectionChanged" Name="comboBoxSearch" Grid.Column="1"  MouseRightButtonUp="comboBoxSearch_MouseRightButtonUp"  ></ComboBox>
+        <ComboBox SelectionChanged="ComboBoxSearch_SelectionChanged" Name="comboBoxSearch" Grid.Column="1"  MouseRightButtonUp="ComboBoxSearch_MouseRightButtonUp"  ></ComboBox>
         <ListView  Name="musicListView" Grid.Row="1" Grid.Column="1" ItemTemplate="{StaticResource DataTemplateMusic}"></ListView>
         <Controls:Flyout  BorderBrush="Red" Grid.Column="0" Grid.RowSpan="2" Position="Left" IsEnabled="True" Name="calendarFlyout" Header="Select Date" Width="261" >
             <Grid>
@@ -78,9 +78,9 @@
                     <RowDefinition/>
                 </Grid.RowDefinitions>
                 <Viewbox Name="CalendarViewBox" Grid.Row="0">
-                    <Calendar GotFocus="datePublishCalendar_GotFocus"  Name="datePublishCalendar" ></Calendar>
+                    <Calendar GotFocus="DatePublishCalendar_GotFocus"  Name="datePublishCalendar" ></Calendar>
                 </Viewbox>
-                <Button Click="buttonDateConfirm_Click" Height="50" VerticalAlignment="Top" Width="260" HorizontalAlignment="Left" Name="buttonDateConfirm" Grid.Row="1">Confirm</Button>
+                <Button Click="ButtonDateConfirm_Click" Height="50" VerticalAlignment="Top" Width="260" HorizontalAlignment="Left" Name="buttonDateConfirm" Grid.Row="1">Confirm</Button>
             </Grid>
         </Controls:Flyout>
     </Grid>
